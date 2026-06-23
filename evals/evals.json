@@ -1,25 +1,71 @@
 {
   "skill_name": "loop-engineering",
+  "note": "Validated case library. Each case is a realistic design/review prompt spanning the four loop patterns (heartbeat / cron / hook / goal) plus long-horizon context. See RESULTS.md for the with-skill vs no-skill benchmark across three iterations.",
   "evals": [
     {
-      "id": 0,
-      "name": "design-ci-pr-fixer",
+      "id": 0, "name": "design-ci-pr-fixer", "mode": "design", "pattern": "goal+heartbeat",
       "prompt": "I want to build an agent that watches my GitHub repo's CI overnight and automatically rebases and fixes PRs that have failing checks. The idea is it keeps trying to get each PR green on its own while I'm asleep. I'm worried about it running forever, blowing through my API budget, or merging something broken. How should I structure this so it's safe? Give me a concrete design I can actually build.",
-      "expected_output": "A concrete design (not a lecture) that nails down: a machine-checkable success condition (CI green), all the exits and guardrails with real numbers (iteration cap, token/cost budget, wall-clock, no-progress detection), deterministic verification via the CI run rather than the agent's self-report, durable state on disk so each attempt starts fresh, and an explicit human-gate before the irreversible action (merging). Should identify this as a goal/heartbeat hybrid and sketch the control flow.",
+      "expected_output": "Machine-checkable success (CI green), all exits with numbers, deterministic verify via CI, durable state on disk, human-gate before merge.",
       "files": []
     },
     {
-      "id": 1,
-      "name": "review-flawed-ticket-bot",
+      "id": 1, "name": "review-flawed-ticket-bot", "mode": "review", "pattern": "heartbeat",
       "prompt": "Here's the background worker we run that polls our support queue every 5 minutes and auto-drafts + posts replies with an LLM. Can you review it before we scale it up to more queues? It's at ticket_bot.py.",
-      "expected_output": "A review that catches the dangerous gaps, ordered by severity: no budget/iteration cap, verification by self-report (it posts and marks solved with no check), no escalation path (bare except: pass swallows everything silently), full customer history + thread dumped into context with no trimming, an irreversible outward-facing action (posting a public reply + marking solved) fired with no human gate, and no rate limiting / idempotency on the poll. Should cite where in the file each issue lives and give the highest-value fix for each.",
+      "expected_output": "Catches: no budget/rate cap, self-report verification, bare except swallowing errors, untrimmed context, no idempotency, no human gate on the public reply; severity-ordered with locations.",
       "files": ["files/ticket_bot.py"]
     },
     {
-      "id": 2,
-      "name": "diagnose-runaway-research-loop",
+      "id": 2, "name": "diagnose-runaway-research-loop", "mode": "review", "pattern": "goal",
       "prompt": "I built a research agent that self-prompts to keep digging into a market until it has a complete competitive analysis. The problem is it just keeps going — it burns tokens for ages and never decides it's actually done, and sometimes it loops over the same competitors. What am I doing wrong and how do I fix it?",
-      "expected_output": "Should diagnose the root cause as a goal loop with no machine-checkable success condition ('complete competitive analysis' is not checkable) and no no-progress/convergence detection, plus no budget cap. Fix: rewrite 'done' as a checkable endpoint (e.g. covered competitors X/Y/Z each with a named source), add hard budget + iteration caps in the controller, add no-progress/loop-fingerprint detection, and an escalation path when it can't converge. Bonus: externalize what it has already covered to a file so cycles don't repeat work.",
+      "expected_output": "Root cause: uncheckable goal. Fix: checkable endpoint, budget caps, no-progress detection, escalation, externalize covered state to a file.",
+      "files": []
+    },
+    {
+      "id": 3, "name": "subtle-review-report-loop", "mode": "review", "pattern": "goal+cron",
+      "prompt": "Here's our weekly report generator — it's a goal loop that keeps improving the draft until the model says it's done. We already added an iteration cap, a token budget, and error handling from the safety checklist, so I think it's solid. We want to run it unattended via cron every Monday morning and have it publish straight to Confluence. Anything left before we ship it? It's at report_loop.py.",
+      "expected_output": "Catches the subtle traps despite the 'it's solid' framing: self-report DONE not machine-checkable, no deterministic verification before publish, no no-progress detection, irreversible publish with no human gate; does not rubber-stamp.",
+      "files": ["files/report_loop.py"]
+    },
+    {
+      "id": 4, "name": "cron-slack-error-summary", "mode": "design", "pattern": "cron",
+      "prompt": "I want a cron job that every morning reads our overnight error logs and posts an LLM-written summary to our team Slack channel. Sometimes the summary is junk or hallucinated. How do I make it solid enough to leave running?",
+      "expected_output": "Machine-checkable quality bar (ground claims vs logs), raises cron stale-prompt/silent-rot, trims/aggregates logs, low-confidence degrade + dedup, concrete design.",
+      "files": []
+    },
+    {
+      "id": 5, "name": "retry-until-valid-json", "mode": "design", "pattern": "goal",
+      "prompt": "Can you write me a small Python helper that calls our LLM to extract structured fields from a document and just retries until it gets back valid JSON? Nothing fancy, it's for a batch job over a few thousand docs.",
+      "expected_output": "No unbounded while; give-up/escalation; validate against schema not just json.loads; batch cost/backoff; feed error back into retry (no blind retry).",
+      "files": []
+    },
+    {
+      "id": 6, "name": "hook-design-issue-triage", "mode": "design", "pattern": "hook",
+      "prompt": "I want to build an agent that fires on GitHub 'issue opened' webhooks, reads the new issue, auto-labels it and posts a triage comment. We're about to bulk-import about 5,000 old issues from our previous tracker next week. How should I build this so the import doesn't blow it up?",
+      "expected_output": "Webhook storm → rate limit/backpressure/queue, idempotency/dedup, budget cap, dry-run/confidence gate on public comment, concrete design.",
+      "files": []
+    },
+    {
+      "id": 7, "name": "heartbeat-review-folder-watcher", "mode": "review", "pattern": "heartbeat",
+      "prompt": "Review this daemon before we deploy it to the production file server. It watches an inbox folder every 30 seconds and auto-files documents using an LLM classifier. It's at folder_watcher.py.",
+      "expected_output": "Catches: overlapping cycles / no idempotency-lock, no budget cap, blind-trust category used for irreversible move, no escalation, untrimmed file content.",
+      "files": ["files/folder_watcher.py"]
+    },
+    {
+      "id": 8, "name": "goal-design-validator-fixer", "mode": "design", "pattern": "goal",
+      "prompt": "I want an agent that keeps editing our infrastructure config until our internal policy validator passes (it exits 0 when the config is compliant). It should just loop until green. How do I make that safe to run on its own?",
+      "expected_output": "Validator exit as checkable success, no-progress detection, budget caps, anti-cheating-the-proxy guard (protected paths / validator read-only), human-gate before apply.",
+      "files": []
+    },
+    {
+      "id": 9, "name": "cron-design-stale-issue-closer", "mode": "design", "pattern": "cron",
+      "prompt": "We have too many stale GitHub issues. I want a weekly cron agent that finds issues with no activity in 60 days, posts a comment asking if it's still relevant, and then auto-closes them if there's no reply after another 14 days. How do I do this responsibly?",
+      "expected_output": "Irreversible/outward actions gated (dry-run/allowlist/approval), rate-limit/batch caps, durable state for the 60/14-day logic, cron stale-prompt + don't-close-active-issues, concrete design.",
+      "files": []
+    },
+    {
+      "id": 10, "name": "context-design-monorepo-audit", "mode": "design", "pattern": "long-horizon-context",
+      "prompt": "I'm building an agent that audits our giant monorepo (thousands of files) for a specific deprecated API pattern and writes one consolidated report. The problem is it runs out of context partway through and forgets what it already found, so the report is incomplete. How should I architect this?",
+      "expected_output": "Externalize findings to disk (note-taking), sub-agents/chunking with clean context, just-in-time retrieval not pre-load, deterministic pre-filter (grep/AST), resumable worklist.",
       "files": []
     }
   ]

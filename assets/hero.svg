@@ -1,0 +1,103 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="690" y1="170" x2="990" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9d4d"/>
+      <stop offset="1" stop-color="#f5852a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="900" cy="320" r="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f5852a" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#f5852a" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#ff9d4d"/>
+    </marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#3ddc97"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+
+  <!-- ===== Left: copy ===== -->
+  <text x="80" y="150" font-size="20" letter-spacing="6" fill="#8b949e" font-weight="600">THE DISCIPLINE AFTER PROMPT ENGINEERING</text>
+  <text x="78" y="232" font-size="76" font-weight="800" fill="#f0f6fc">Loop</text>
+  <text x="78" y="312" font-size="76" font-weight="800" fill="#ff9d4d">Engineering</text>
+
+  <text x="80" y="372" font-size="22" fill="#c9d1d9">Design &amp; review the loop an agent runs on its own —</text>
+  <text x="80" y="404" font-size="22" fill="#c9d1d9">when it fires, how it verifies, when it stops,</text>
+  <text x="80" y="436" font-size="22" fill="#c9d1d9">when it hands back to a human.</text>
+
+  <!-- principle chips -->
+  <g font-size="17" fill="#adbac7">
+    <rect x="80"  y="470" width="224" height="40" rx="20" fill="#1f2630" stroke="#30363d"/>
+    <text x="100" y="495">machine-checkable done</text>
+    <rect x="316" y="470" width="160" height="40" rx="20" fill="#1f2630" stroke="#30363d"/>
+    <text x="336" y="495">deterministic verify</text>
+    <rect x="80"  y="522" width="142" height="40" rx="20" fill="#1f2630" stroke="#30363d"/>
+    <text x="100" y="547">budgeted exits</text>
+    <rect x="234" y="522" width="170" height="40" rx="20" fill="#1f2630" stroke="#30363d"/>
+    <text x="254" y="547">human-gated actions</text>
+  </g>
+
+  <!-- benchmark badge -->
+  <g>
+    <rect x="80" y="582" width="232" height="40" rx="8" fill="#10261c" stroke="#238636"/>
+    <text x="100" y="608" font-size="18" fill="#3ddc97" font-weight="700">benchmark&#160;&#160;87% &#8594; 100%</text>
+  </g>
+
+  <!-- ===== Right: the loop ===== -->
+  <!-- ring -->
+  <circle cx="900" cy="300" r="150" fill="none" stroke="url(#ring)" stroke-width="3" stroke-dasharray="6 9" opacity="0.55"/>
+
+  <!-- directional arcs (clockwise) -->
+  <g stroke="#ff9d4d" stroke-width="3" fill="none" opacity="0.9">
+    <path d="M 939 161 A 150 150 0 0 1 1039 300" marker-end="url(#arrow)"/>
+    <path d="M 1039 300 A 150 150 0 0 1 939 439" marker-end="url(#arrow)"/>
+    <path d="M 861 439 A 150 150 0 0 1 761 300" marker-end="url(#arrow)"/>
+    <path d="M 761 300 A 150 150 0 0 1 861 161" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- center label -->
+  <text x="900" y="294" font-size="15" fill="#8b949e" text-anchor="middle" font-family="monospace">while&#160;not&#160;done:</text>
+  <text x="900" y="318" font-size="19" fill="#f0f6fc" text-anchor="middle" font-weight="700">agent loop</text>
+
+  <!-- nodes -->
+  <g text-anchor="middle">
+    <!-- top: Trigger -->
+    <circle cx="900" cy="150" r="40" fill="#1f2630" stroke="#ff9d4d" stroke-width="2"/>
+    <text x="900" y="156" font-size="16" fill="#f0f6fc" font-weight="600">Trigger</text>
+    <!-- right: Check -->
+    <circle cx="1050" cy="300" r="40" fill="#1f2630" stroke="#ff9d4d" stroke-width="2"/>
+    <text x="1050" y="306" font-size="16" fill="#f0f6fc" font-weight="600">Check</text>
+    <!-- bottom: Act -->
+    <circle cx="900" cy="450" r="40" fill="#1f2630" stroke="#ff9d4d" stroke-width="2"/>
+    <text x="900" y="456" font-size="16" fill="#f0f6fc" font-weight="600">Act</text>
+    <!-- left: Verify -->
+    <circle cx="750" cy="300" r="40" fill="#1f2630" stroke="#ff9d4d" stroke-width="2"/>
+    <text x="750" y="306" font-size="16" fill="#f0f6fc" font-weight="600">Verify</text>
+  </g>
+
+  <!-- exits -->
+  <g font-size="16" font-weight="600">
+    <!-- success out of Verify -->
+    <path d="M 712 290 L 1150 200" stroke="#3ddc97" stroke-width="2" fill="none" stroke-dasharray="2 6" marker-end="url(#arrowg)" opacity="0.8"/>
+    <rect x="1150" y="182" width="60" height="34" rx="8" fill="#10261c" stroke="#238636"/>
+    <text x="1164" y="204" fill="#3ddc97">✓ done</text>
+
+    <!-- failure / budget exits -->
+    <rect x="1150" y="286" width="92" height="34" rx="8" fill="#2a1518" stroke="#f85149"/>
+    <text x="1164" y="308" fill="#ff7b72">✗ failure</text>
+    <rect x="1150" y="334" width="100" height="34" rx="8" fill="#2a2113" stroke="#d29922"/>
+    <text x="1164" y="356" fill="#e3b341">⏱ budget</text>
+  </g>
+
+  <!-- human gate footnote -->
+  <g>
+    <text x="760" y="540" font-size="16" fill="#8b949e">&#9650;&#160; irreversible / outward actions are gated behind a human</text>
+  </g>
+</svg>

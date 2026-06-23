@@ -2,6 +2,8 @@
 
 # Loop Engineering — a skill for designing & reviewing autonomous agent loops
 
+![Loop Engineering — design & review the loop an agent runs on its own: trigger, check, act, verify, with success/failure/budget exits and a human gate](assets/hero.png)
+
 Loop engineering is the discipline that comes after prompt engineering. A prompt
 optimizes a single interaction; a **loop** optimizes the autonomous behavior that
 surrounds it — *when* an agent runs, *what* triggers it, *how* it verifies its own
@@ -17,11 +19,19 @@ It distills 12 sources (Anthropic's context-engineering guidance, the Ralph loop
 RPI methodology, Claude Code's agent-loop docs, and the 2026 "loop engineering"
 writing) into seven load-bearing principles plus reference material.
 
+**Quick start (Claude Code):**
+
+```bash
+git clone https://github.com/maxmilian/loop-engineering ~/.claude/skills/loop-engineering
+```
+
+Start a new session — that's it. (Other tools: [Install](#install).)
+
 > In benchmark testing against a no-skill baseline on deliberately tricky cases,
 > the skill raised the pass rate from 87% → 100% while producing more consistent,
 > cheaper answers — its edge shows up on the subtle failure modes a strong model
 > otherwise misses (cron stale-prompt drift, blind-retry waste, missing
-> human-gates on irreversible actions).
+> human-gates on irreversible actions). [Reproduce it →](#reproduce-the-benchmark)
 
 ## The seven principles (TL;DR)
 
@@ -106,6 +116,35 @@ You don't invoke it explicitly — describe the task and the agent picks it up:
 - *"I want an agent that watches CI overnight and fixes failing PRs on its own."* → design mode
 - *"Review this background worker before we scale it to more queues."* → review mode
 - *"My research agent keeps burning tokens and never finishes."* → diagnosis
+
+## Reproduce the benchmark
+
+The numbers above aren't hand-waving — the held-out cases are in this repo so you
+can re-run them yourself.
+
+- **The eval set** lives in [`evals/evals.json`](evals/evals.json): three
+  deliberately tricky cases — one **design** (CI/PR-fixer), one **review** (a
+  flawed support-ticket bot, code in [`evals/files/`](evals/files/)), and one
+  **diagnose** (a runaway research loop). Each case ships an `expected_output`
+  rubric of the specific things a correct answer must nail (machine-checkable
+  done-condition, all exits with real numbers, deterministic verification,
+  human-gate on irreversible actions, etc.).
+
+**Method (same as the headline number):**
+
+1. For each case, run the `prompt` **twice** — once with the skill installed
+   (control flow above) and once on a clean baseline with no skill — across
+   several runs each to average out variance.
+2. Grade every run against its `expected_output` rubric (LLM-graded against the
+   listed assertions; the rubric items are written to be objectively checkable).
+3. Aggregate the per-assertion pass rate for each configuration and compare.
+
+The pass-rate / variance / token aggregation in the headline figure was driven by
+Anthropic's `skill-creator` benchmark harness (`grader` + `aggregate_benchmark`),
+but any with-skill / without-skill comparison graded against the rubric will
+surface the same gap. The skill's edge concentrates on the subtle
+failure modes — stale-prompt drift, blind-retry waste, missing human-gates — that
+a strong model otherwise skips when left to its own defaults.
 
 ## Contributing
 
