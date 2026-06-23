@@ -120,7 +120,8 @@ You don't invoke it explicitly — describe the task and the agent picks it up:
 ## Reproduce the benchmark
 
 The numbers above aren't hand-waving — the held-out cases are in this repo so you
-can re-run them yourself.
+can re-run them yourself, and the full per-iteration results (with an honest note
+on where the skill *doesn't* help) are in [`evals/RESULTS.md`](evals/RESULTS.md).
 
 - **The eval set** lives in [`evals/evals.json`](evals/evals.json): three
   deliberately tricky cases — one **design** (CI/PR-fixer), one **review** (a
