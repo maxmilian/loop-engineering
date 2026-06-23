@@ -1,4 +1,4 @@
-<!-- LANG-SWITCH --> [English](README.md) · **繁體中文** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+[English](README.md) · **繁體中文** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 # Loop Engineering — 設計與審查自主 agent loop 的 skill
 
@@ -95,5 +95,7 @@ Gemini 透過它的 skill 機制啟用。把資料夾放進 Gemini skills 目錄
 
 
 ## 授權 / 出處
+
+以 **MIT License** 釋出——見 [`LICENSE`](LICENSE)。
 
 萃取自關於 loop engineering、agent loop、context engineering 的公開寫作——完整來源清單與連結見 `references/sources.md`。

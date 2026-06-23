@@ -1,4 +1,4 @@
-<!-- LANG-SWITCH --> [English](README.md) · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
+[English](README.md) · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
 # Loop Engineering — 자율 agent loop 설계 & 리뷰를 위한 skill
 
@@ -97,5 +97,7 @@ skills/loop-engineering/SKILL.md (and its references/ files).
 
 
 ## 라이선스 / 출처
+
+**MIT License** 로 배포됩니다 — [`LICENSE`](LICENSE) 참고.
 
 Loop engineering, agent loop, context engineering에 관한 공개 글에서 정리했습니다 — 전체 출처 목록과 링크는 `references/sources.md`를 참고하세요.

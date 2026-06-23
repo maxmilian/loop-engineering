@@ -1,4 +1,4 @@
-<!-- LANG-SWITCH --> [English](README.md) · [繁體中文](README.zh-TW.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
+[English](README.md) · [繁體中文](README.zh-TW.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 # Loop Engineering — 用于设计与审查自主 agent loop 的 skill
 
@@ -95,5 +95,7 @@ skills/loop-engineering/SKILL.md (and its references/ files).
 
 
 ## License / 致谢
+
+以 **MIT License** 发布——见 [`LICENSE`](LICENSE)。
 
 提炼自关于 loop engineering、agent loop 与 context engineering 的公开文章——完整来源列表与链接见 `references/sources.md`。

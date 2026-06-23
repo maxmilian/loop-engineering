@@ -1,4 +1,4 @@
-<!-- LANG-SWITCH --> **English** · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+**English** · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 # Loop Engineering — a skill for designing & reviewing autonomous agent loops
 
@@ -115,6 +115,8 @@ Contributions are very welcome — new worked examples, extra loop patterns, sha
 
 
 ## License / attribution
+
+Released under the **MIT License** — see [`LICENSE`](LICENSE).
 
 Distilled from public writing on loop engineering, agent loops, and context
 engineering — see `references/sources.md` for the full source list and links.
