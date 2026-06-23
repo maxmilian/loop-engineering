@@ -1,4 +1,4 @@
-<!-- LANG-SWITCH --> [English](README.md) · **繁體中文**
+<!-- LANG-SWITCH --> [English](README.md) · **繁體中文** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 # Loop Engineering — 設計與審查自主 agent loop 的 skill
 

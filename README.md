@@ -1,4 +1,4 @@
-<!-- LANG-SWITCH --> **English** · [繁體中文](README.zh-TW.md)
+<!-- LANG-SWITCH --> **English** · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 # Loop Engineering — a skill for designing & reviewing autonomous agent loops
 
