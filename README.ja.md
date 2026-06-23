@@ -91,6 +91,13 @@ skills/loop-engineering/SKILL.md (and its references/ files).
 
 SKILL.md の description フィールドおよび skill 本文は**英語のまま**にしてください。これらはモデルが処理するメタデータであり、翻訳すると自動検出や呼び出しトリガーの精度が下がります。README のような人間が読むドキュメントのみ多言語化の対象です。
 
+## コントリビュート
+
+コントリビューション大歓迎です — 新しい worked example、追加の loop pattern、より鋭い review ヒューリスティック、翻訳、修正など。気軽に issue や PR を開いてください。
+
+**AI 支援によるコントリビューションも明確に歓迎します。** これは agentic loop *についての* skill なので、Claude Code / Codex / Copilot / Gemini(あるいは任意の coding agent)で変更を下書きすることを推奨します — テーマにぴったりです。提出前に agent の出力をレビューしてください:正しいこと、主張がある箇所は実在のソースに基づいていること(`references/sources.md` 参照)、そして自信を持って提出できることを確認しましょう。この skill を自分の PR で dogfood するのも歓迎です。
+
+
 ## ライセンス / 出典
 
 loop engineering、agent loops、context engineering に関する公開文書を凝縮したものです — 全ソースリストとリンクは `references/sources.md` を参照してください。

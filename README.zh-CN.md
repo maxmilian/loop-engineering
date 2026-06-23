@@ -87,6 +87,13 @@ skills/loop-engineering/SKILL.md (and its references/ files).
 - *"在我们将这个后台 worker 扩展到更多队列之前，帮我 review 一下。"* → review mode
 - *"我的 research agent 一直在消耗 token，却从未完成任务。"* → 诊断模式
 
+## 参与贡献
+
+非常欢迎贡献——新的实战示例、额外的 loop pattern、更锐利的 review 判据、翻译,或修复。提 issue 或 PR 都可以。
+
+**明确欢迎使用 AI 协助贡献。** 这是一个*关于* agentic loop 的 skill,所以用 Claude Code / Codex / Copilot / Gemini(或任何 coding agent)来起草你的修改是鼓励的——正合主题。只要在提交前 review 一下 agent 的产出:确认正确、有主张处有真实来源佐证(见 `references/sources.md`)、并且你愿意为它背书。拿这个 skill 来 dogfood 你自己的 PR 更是加分。
+
+
 ## License / 致谢
 
 提炼自关于 loop engineering、agent loop 与 context engineering 的公开文章——完整来源列表与链接见 `references/sources.md`。

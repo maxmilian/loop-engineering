@@ -107,6 +107,13 @@ You don't invoke it explicitly — describe the task and the agent picks it up:
 - *"Review this background worker before we scale it to more queues."* → review mode
 - *"My research agent keeps burning tokens and never finishes."* → diagnosis
 
+## Contributing
+
+Contributions are very welcome — new worked examples, extra loop patterns, sharper review heuristics, translations, or fixes. Open an issue or a PR.
+
+**AI-assisted contributions are explicitly welcome.** This is a skill *about* agentic loops, so drafting your changes with Claude Code / Codex / Copilot / Gemini (or any coding agent) is encouraged — it fits the topic perfectly. Just review what your agent produces before submitting: make sure it's correct, grounded in a real source where it makes a claim (see `references/sources.md`), and that you'd stand behind it. Dogfooding this skill on your own PR is a plus.
+
+
 ## License / attribution
 
 Distilled from public writing on loop engineering, agent loops, and context

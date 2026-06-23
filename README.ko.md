@@ -89,6 +89,13 @@ skills/loop-engineering/SKILL.md (and its references/ files).
 
 > **참고:** SKILL.md의 description과 skill body는 번역하지 않습니다. 모델이 읽는 skill 자체는 영어로 유지하며, README만 다국어로 제공합니다.
 
+## 기여하기
+
+기여를 환영합니다 — 새로운 worked example, 추가 loop pattern, 더 날카로운 review heuristic, 번역, 또는 수정. 편하게 issue나 PR을 열어주세요.
+
+**AI 보조 기여도 명시적으로 환영합니다.** 이것은 agentic loop *에 관한* skill이므로, Claude Code / Codex / Copilot / Gemini(또는 임의의 coding agent)로 변경 사항을 작성하는 것을 권장합니다 — 주제에 잘 맞습니다. 제출 전에 agent의 출력을 review 하세요: 정확한지, 주장이 있는 부분은 실제 출처에 근거하는지(`references/sources.md` 참고), 그리고 자신 있게 제출할 수 있는지 확인하세요. 이 skill을 자신의 PR에 dogfood 하는 것도 환영합니다.
+
+
 ## 라이선스 / 출처
 
 Loop engineering, agent loop, context engineering에 관한 공개 글에서 정리했습니다 — 전체 출처 목록과 링크는 `references/sources.md`를 참고하세요.

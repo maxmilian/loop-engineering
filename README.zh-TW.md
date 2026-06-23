@@ -87,6 +87,13 @@ Gemini 透過它的 skill 機制啟用。把資料夾放進 Gemini skills 目錄
 - *「我的研究 agent 一直燒 token、永遠不收尾。」* → 診斷
 - *「設計一個跑到目標達成才停的 loop,別讓它失控。」* → 設計模式
 
+## 參與貢獻
+
+非常歡迎貢獻——新的實戰範例、額外的 loop pattern、更銳利的 review 判準、翻譯,或修正。開 issue 或 PR 都可以。
+
+**明確歡迎使用 AI 協助貢獻。** 這是一個*關於* agentic loop 的 skill,所以用 Claude Code / Codex / Copilot / Gemini(或任何 coding agent)來起草你的修改是鼓勵的——正合主題。只要在送出前 review 一下 agent 的產出:確認正確、有主張處有真實來源佐證(見 `references/sources.md`)、而且你願意為它背書。拿這個 skill 來 dogfood 你自己的 PR 更是加分。
+
+
 ## 授權 / 出處
 
 萃取自關於 loop engineering、agent loop、context engineering 的公開寫作——完整來源清單與連結見 `references/sources.md`。
