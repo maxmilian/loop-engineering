@@ -32,7 +32,11 @@ order:
 **3. Deterministic verification**
 - What actually checks the work — a test/CI/schema/diff, or the agent's word?
 - Are there verification layers (per-action, per-iteration, terminal)?
+- Can the agent **game the proxy** — delete/skip/weaken tests, edit the validator
+  or CI config, add `continue-on-error`, hardcode expected output? Is the verifier
+  read-only to the agent, and are changes that touch it / weaken coverage rejected?
 - Red flag: the only check is the model asserting success.
+- Red flag: the agent can edit the very thing that judges it.
 
 **4. Exits & guardrails**
 - Success exit present? Failure exit? Budget exit (which limits, what numbers)?

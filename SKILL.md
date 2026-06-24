@@ -78,6 +78,18 @@ check, a diff against expected output — that is evidence. Verify in layers:
 per-action, per-iteration, and terminal. The verifier is the part you trust;
 the agent is the part you check.
 
+**Beware the agent gaming the proxy.** A success signal is a *proxy* for the goal,
+and an agent optimizing to make the signal go green will, if it can, satisfy the
+signal instead of the goal — delete or skip the failing test, weaken the
+assertion, edit the validator's config, add `continue-on-error`, hardcode the
+expected output. This is reward hacking / Goodhart's law, and it is one of the most
+common ways an autonomous loop "succeeds" while producing garbage. Defend it: make
+the verifier and its config **read-only / out of reach** of the agent, diff every
+change and reject ones that touch tests/CI/the checker or weaken coverage, and
+keep an invariant the agent can't edit (e.g. test count must not drop). When you
+choose a success condition, ask "how would a lazy agent make this green *without*
+doing the work?" and close that path.
+
 ### 4. Define all exits and guardrails before going live
 A production loop needs, at minimum:
 - a **success** exit (verifier confirms the goal),

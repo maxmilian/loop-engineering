@@ -69,16 +69,39 @@ slow" (tool outputs are the real hog), "every 10 min process new DB rows, easy r
 (hidden idempotency). The baseline scored 100% anyway — the frontier model pushes back and
 surfaces every trap on its own. The skill did not measurably beat it.
 
+## Weak-model experiment — where the skill actually moves the needle
+
+The frontier runs above are at the ceiling, so they can't show lift. So we re-ran a
+representative 8-case subset on a **small/fast model (Haiku class)**, both with and
+without the skill — the setting where a coverage guarantee should matter most.
+
+| Config (Haiku) | Pass rate | Assertions |
+|---|---|---|
+| **with skill** | **90.0%** | 38 / 42 |
+| baseline (no skill) | 74.2% | 31 / 42 |
+| **Δ** | **+16 pp** | **+7** |
+
+This is the real signal: **the skill lifts a weaker model by ~16 points.** The lift
+concentrated on the *self-report / verification / human-gate* family — without the
+skill, the weak model treated "it posts the model's output with no check" or "done =
+the model said DONE" as a parsing/quality nit; with the skill it named the conceptual
+flaw (trust the verifier not the agent; gate irreversible outward actions) and the
+no-progress / publish-gate gaps. One regression (an idempotency-on-overlap case the
+baseline caught via generic race-condition reasoning and the skilled run only half-
+covered) keeps it honest.
+
+**A gap the eval surfaced:** on the "agent games its own success proxy" cases
+(cheating a validator / making tests green by deleting them), *both* configs missed it
+— so this was a genuine hole in the skill, not just a model limitation. It has since
+been added to Principle 3 and the review checklist (verifier must be read-only to the
+agent; reject changes that touch or weaken the checker). That is the eval loop doing
+its job: improving the skill, not just scoring it.
+
 ## What this means
 
-Be honest about the headline: **on a frontier model these evals are at the ceiling**, so
-the benchmark cannot show lift the model doesn't need. To actually *measure* the skill's
-contribution you'd want a weaker/cheaper baseline model (e.g. a small/fast tier), where
-the coverage guarantee and the specific failure-mode vocabulary should matter more — that
-experiment is not yet run.
-
-That said, the skill is **not** a capability the strong base model lacks on these tasks.
-Its value is:
+On a **frontier** model these tasks are at the ceiling — the skill doesn't add
+capability the model already has. On a **weaker** model the skill delivers a real,
+measured **+16-point** lift. Either way, the skill's value is:
 
 1. **Lift on the cases that actually bite** — subtle, positively-framed, or
    under-specified loops where a strong model otherwise rubber-stamps or misses a
