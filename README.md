@@ -32,6 +32,10 @@ Start a new session — that's it. (Other tools: [Install](#install).)
 > cheaper answers — its edge shows up on the subtle failure modes a strong model
 > otherwise misses (cron stale-prompt drift, blind-retry waste, missing
 > human-gates on irreversible actions). [Reproduce it →](#reproduce-the-benchmark)
+>
+> On a **weaker model (Haiku class)** the lift is far larger — **+16 points**
+> (74% → 90% on an 8-case subset) — which is exactly where a coverage guarantee
+> matters most.
 
 ## The seven principles (TL;DR)
 

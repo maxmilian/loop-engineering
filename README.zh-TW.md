@@ -22,6 +22,8 @@ git clone https://github.com/maxmilian/loop-engineering ~/.claude/skills/loop-en
 開一個新 session 就好。(其他工具見 [安裝](#安裝)。)
 
 > 在 benchmark 中對照「無 skill」的 baseline,於刻意設計的刁鑽案例上,這個 skill 把通過率從 87% 拉到 100%,同時答案更一致、更省 token——它的優勢出現在強模型原本會漏掉的隱晦失效模式(cron stale-prompt 腐壞、盲目重試浪費、不可逆動作缺人工閘)。[重現它 →](#重現-benchmark)
+>
+> 在**較弱的模型(Haiku 級)**上,增益更大——8 案子集 **+16 個百分點**(74% → 90%),這正是「覆蓋保證」最關鍵的場景。
 
 ## 七條核心原則(TL;DR)
 

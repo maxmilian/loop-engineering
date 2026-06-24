@@ -22,6 +22,8 @@ git clone https://github.com/maxmilian/loop-engineering ~/.claude/skills/loop-en
 새 세션을 시작하면 끝입니다. (다른 도구는 [설치](#설치) 참고.)
 
 > 의도적으로 까다로운 케이스에서 no-skill 기준선과의 benchmark 테스트 결과, 이 skill은 통과율을 87% → 100%로 높이면서 더 일관성 있고 비용이 낮은 답변을 생성했습니다 — 강력한 모델도 놓치기 쉬운 미묘한 실패 모드(cron stale-prompt drift, 무분별한 retry 낭비, 되돌릴 수 없는 동작에 대한 human-gate 누락)에서 특히 효과가 두드러집니다. [재현하기 →](#benchmark-재현하기)
+>
+> **더 약한 모델(Haiku 급)**에서는 향상폭이 훨씬 커서, 8개 케이스 서브셋에서 **+16 포인트**(74% → 90%) — 커버리지 보장이 가장 중요한 영역입니다.
 
 ## 7가지 원칙 (TL;DR)
 
